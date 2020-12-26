@@ -2,11 +2,10 @@
 Downlad repository and place code in apropriate direcotriy folder to run on localhost my folder name is "CO2"
 create database with name "db_co2" optional you can create with any name
 create table with name "sensors", you can import the table  I have provided inside this repositry with name co2.sql, this table contains sample data for testing perpose 
+
+for optimization 
 create a view with below query to get last 5 minuets records although we any need last three records for a provided uuid sensor
 this will help to retrieve data quickly rather than whole table records
-
-"CREATE OR REPLACE VIEW view_sensors AS 
-SELECT id,co2,sense_id FROM sensors WHERE `created` BETWEEN (DATE_SUB(NOW(),INTERVAL 5 MINUTE)) AND NOW(); "
 
 
 All the apis' are tested on postman api tool and gives resoponse as required 
