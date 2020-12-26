@@ -24,3 +24,26 @@ with sample data
 
 I have provided simple interface for dump data for testing perpose url
 http://localhost/CO2/api/v1/sensors/dashboard
+
+
+
+
+mysql query for discussion 
+
+SELECT
+    id,
+    sense_id,co2,
+    sensor_status
+FROM
+(
+    SELECT
+        id,
+    sense_id,co2,
+    sensor_status,
+        @rn := IF(@prev = sense_id, @rn + 1, 1) AS rn,
+        @prev := sense_id
+    FROM sensors
+    JOIN (SELECT @prev := NULL, @rn := 0) AS vars
+    ORDER BY sense_id, id DESC, id
+) AS T1
+WHERE rn <= 3
